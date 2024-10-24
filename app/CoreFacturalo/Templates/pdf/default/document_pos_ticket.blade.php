@@ -37,7 +37,11 @@
         $data_qr = $document->qr;
         $codigoQR = new QrCode($data_qr);
         $output = new Output\Png();
+<<<<<<< HEAD
         $imagenCodigoQR = $output->output($codigoQR, 140);
+=======
+        $imagenCodigoQR = $output->output($codigoQR, 180);
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     }
 @endphp
 <html>

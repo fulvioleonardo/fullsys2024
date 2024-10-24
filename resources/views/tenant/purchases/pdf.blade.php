@@ -60,7 +60,15 @@
         </td>
         <td width="30%" class="border-box py-4 px-2 text-center">
             <h5 class="text-center">COMPRA</h5>
+<<<<<<< HEAD
             <h3 class="text-center">{{ $tittle }}</h3>
+=======
+            <h3>
+                {{ $document->document_type->description }}
+                <br>
+                {{ $tittle }}
+            </h3>
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
         </td>
     </tr>
 </table>
@@ -114,6 +122,17 @@
         </td>
     </tr>
     @endif
+<<<<<<< HEAD
+=======
+    @if ($document->document_type_id == '07' || $document->document_type_id == '08')
+    <tr>
+        <td class="align-top">Concepto:</td>
+        <td colspan="3">
+            {{ $document->note_concepts->name }}
+        </td>
+    </tr>
+    @endif
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
 </table>
 
 <table class="full-width mt-10 mb-10">

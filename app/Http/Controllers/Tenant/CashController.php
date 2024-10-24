@@ -198,6 +198,10 @@ class CashController extends Controller
             'message' => 'Caja eliminada con éxito'
         ];
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     //Se modifica la funcion report()
     public function report($cashId, $only_head = null) {
         $cash = Cash::findOrFail($cashId);
@@ -238,6 +242,48 @@ class CashController extends Controller
         return $pdf->stream($filename . '.pdf');
     }
 
+<<<<<<< HEAD
+=======
+    public function report_ticket($cashId) {
+        $cash = Cash::findOrFail($cashId);
+        $company = Company::first();
+        $only_head = null;
+
+        // Se Calcula $cashEgress, similar al de la funcion que estaba.
+        $cashEgress = $cash->cash_documents->sum(function ($cashDocument) {
+            return $cashDocument->expense_payment ? $cashDocument->expense_payment->payment : 0;
+        });
+
+        // Se Recupera $expensePayments, similar como estaba.
+        $expensePayments = $cash->cash_documents->filter(function ($doc) {
+            return !is_null($doc->expense_payment_id);
+        })->map->expense_payment;
+
+        // Inicialización de $methods_payment.
+        $methods_payment = PaymentMethodType::all()->map(function($row) {
+            return (object)[
+                'id' => $row->id,
+                'name' => $row->description,
+                'sum' => 0
+            ];
+        });
+
+        // Se recuperan las categorías
+        $categories = Category::all()->pluck('name', 'id');
+
+        // Se Recupera la Resolución
+        $resolutions_maquinas = ConfigurationPos::select('cash_type', 'plate_number', 'electronic')->get();
+
+        set_time_limit(0); // Aumentar el tiempo de ejecución si los reportes son grandes.
+
+        // Se Pasan todas las variables necesarias a la vista.
+        $pdf = PDF::loadView('tenant.cash.report_ticket', compact("cash", "company", "methods_payment", "cashEgress", "categories", "resolutions_maquinas", "expensePayments", "only_head"))->setPaper(array(0,0,227,380));
+        $filename = "Reporte_POS - {$cash->user->name} - {$cash->date_opening} {$cash->time_opening}";
+
+        return $pdf->stream($filename . '.pdf');
+    }
+
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     public function report_general()
     {
 
@@ -276,6 +322,7 @@ class CashController extends Controller
         $filename = "Reporte_POS_PRODUCTOS - {$cash->user->name} - {$cash->date_opening} {$cash->time_opening}";
 
         return $pdf->stream($filename.'.pdf');
+<<<<<<< HEAD
 
 
 
@@ -283,4 +330,7 @@ class CashController extends Controller
 
 
 
+=======
+    }
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
 }

@@ -1,11 +1,16 @@
 <?php
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Schema;
+=======
+use Illuminate\Support\Facades\DB;
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class TenantAddFieldsToItems extends Migration
 {
+<<<<<<< HEAD
     /**
      * Run the migrations.
      *
@@ -31,6 +36,42 @@ class TenantAddFieldsToItems extends Migration
             $table->unsignedInteger('size_id')->nullable()->after('brand_id');
             $table->foreign('size_id')->references('id')->on('sizes');
         });
+=======
+    public function up()
+    {
+        try {
+            if (!Schema::hasTable('colors')) {
+                Schema::create('colors', function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('name');
+                    $table->timestamps();
+                });
+            }
+
+            if (!Schema::hasTable('sizes')) {
+                Schema::create('sizes', function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('name');
+                    $table->timestamps();
+                });
+            }
+
+            Schema::table('items', function (Blueprint $table) {
+                if (!Schema::hasColumn('items', 'color_id')) {
+                    $table->unsignedInteger('color_id')->nullable()->after('brand_id');
+                    $table->foreign('color_id')->references('id')->on('colors');
+                }
+
+                if (!Schema::hasColumn('items', 'size_id')) {
+                    $table->unsignedInteger('size_id')->nullable()->after('brand_id');
+                    $table->foreign('size_id')->references('id')->on('sizes');
+                }
+            });
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Puedes registrar el error si lo deseas, o ignorarlo
+            // Log::error($e->getMessage());
+        }
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     }
 
     /**

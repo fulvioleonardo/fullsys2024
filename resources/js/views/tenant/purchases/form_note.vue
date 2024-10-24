@@ -8,7 +8,11 @@
                 <div class="form-body">
 
                     <div class="row">
+<<<<<<< HEAD
                         <div class="col-lg-4">
+=======
+                        <div class="col-lg-2">
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
                             <div class="form-group" :class="{ 'has-danger': errors.document_type_id }">
                                 <label class="control-label">Tipo comprobante</label>
                                 <el-select v-model="form.document_type_id" @change="changeDocumentType">
@@ -19,6 +23,18 @@
                                     v-text="errors.document_type_id[0]"></small>
                             </div>
                         </div>
+<<<<<<< HEAD
+=======
+                        <div class="col-md-2">
+                            <div class="form-group" :class="{'has-danger': errors.note_concept_id}">
+                                <label class="control-label">Concepto</label>
+                                <el-select v-model="form.note_concept_id" filterable  popper-class="el-select-document_type" dusk="note_concept_id" class="border-left rounded-left border-info">
+                                    <el-option v-for="option in note_concepts" :key="option.id" :value="option.id" :label="option.name"></el-option>
+                                </el-select>
+                                <small class="form-control-feedback" v-if="errors.note_concept_id" v-text="errors.note_concept_id[0]"></small>
+                            </div>
+                        </div>
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
                         <div class="col-lg-2">
                             <div class="form-group" :class="{ 'has-danger': errors.series }">
                                 <label class="control-label">Serie <span class="text-danger">*</span></label>
@@ -404,7 +420,12 @@ export default {
             loading_search: false,
             currency_type: {},
             taxes: [],
+<<<<<<< HEAD
             purchaseNewId: null
+=======
+            purchaseNewId: null,
+            note_concepts: [],
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
         }
     },
     async created() {
@@ -836,6 +857,10 @@ export default {
                 has_client: false,
                 taxes: [],
                 has_payment: false,
+<<<<<<< HEAD
+=======
+                note_concept_id: null,
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
             }
 
             // this.clickAddPayment()
@@ -859,6 +884,10 @@ export default {
         },
         changeDocumentType() {
             this.filterSuppliers()
+<<<<<<< HEAD
+=======
+            this.conceptsNote()
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
         },
         addRow(row) {
             this.form.items.push(row)
@@ -919,6 +948,12 @@ export default {
             if (!validate.success) {
                 return this.$message.error(validate.message);
             }
+<<<<<<< HEAD
+=======
+            if(!this.form.note_concept_id){
+                return this.$message.error('Debe seleccionar un concepto')
+            }
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
 
             this.loading_submit = true
             // await this.changePaymentMethodType(false)
@@ -957,6 +992,26 @@ export default {
 
             })
         },
+<<<<<<< HEAD
+=======
+        conceptsNote() {
+            this.form.note_concept_id = null;
+            if (this.form.document_type_id != null) {
+                let id = this.form.document_type_id == '07' ? 3 : 2;
+                this.getConcepts(id).then(
+                    rows => (this.note_concepts = rows)
+                );
+            }
+        },
+        getConcepts(val) {
+            return this.$http.post(`/concepts/${val}`).then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        },
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     }
 }
 </script>

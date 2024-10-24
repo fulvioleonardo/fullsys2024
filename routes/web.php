@@ -468,6 +468,10 @@ if ($hostname) {
            Route::post('cash/cash_document', 'Tenant\CashController@cash_document');
            Route::get('cash/close/{cash}', 'Tenant\CashController@close');
            Route::get('cash/report/{cash}/{only_head?}', 'Tenant\CashController@report');
+<<<<<<< HEAD
+=======
+           Route::get('cash/report-ticket/{cash}/', 'Tenant\CashController@report_ticket');
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
            Route::get('cash/report', 'Tenant\CashController@report_general');
 
            Route::get('cash/record/{cash}', 'Tenant\CashController@record');

@@ -13,9 +13,18 @@ class AddRemissionToDocuments extends Migration
      */
     public function up()
     {
+<<<<<<< HEAD
         Schema::table('documents', function (Blueprint $table) {
             $table->unsignedInteger('remission_id')->nullable()->after('order_note_id');
         });
+=======
+        // Verifica si la columna 'remission_id' no existe antes de agregarla
+        if (!Schema::hasColumn('documents', 'remission_id')) {
+            Schema::table('documents', function (Blueprint $table) {
+                $table->unsignedInteger('remission_id')->nullable()->after('order_note_id');
+            });
+        }
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     }
 
     /**
@@ -25,8 +34,17 @@ class AddRemissionToDocuments extends Migration
      */
     public function down()
     {
+<<<<<<< HEAD
         Schema::table('documents', function (Blueprint $table) {
             $table->dropColumn('remission_id');
         });
+=======
+        // Verifica si la columna existe antes de eliminarla
+        if (Schema::hasColumn('documents', 'remission_id')) {
+            Schema::table('documents', function (Blueprint $table) {
+                $table->dropColumn('remission_id');
+            });
+        }
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     }
 }

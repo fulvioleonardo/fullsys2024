@@ -10,6 +10,10 @@ use Modules\Purchase\Models\PurchaseOrder;
 use Modules\Factcolombia1\Models\Tenant\{
     Currency,
 };
+<<<<<<< HEAD
+=======
+use Modules\Factcolombia1\Models\Tenant\NoteConcept;
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
 
 class Purchase extends ModelTenant
 {
@@ -73,6 +77,10 @@ class Purchase extends ModelTenant
         'total_tax',
         'subtotal',
         'affected_document',
+<<<<<<< HEAD
+=======
+        'note_concept_id',
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
     ];
 
     protected $casts = [
@@ -293,4 +301,11 @@ class Purchase extends ModelTenant
     {
         return $query->where('currency_id', $currency_id);
     }
+<<<<<<< HEAD
+=======
+
+    public function note_concepts() {
+        return $this->belongsTo(NoteConcept::class, 'note_concept_id');
+    }
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
 }

@@ -21,7 +21,10 @@ class TaxCollection extends ResourceCollection
                 'in_base' => $row->in_base,
                 'in_tax' => $row->in_tax,
                 'type_tax_id_name' => $row->type_tax->name,
+<<<<<<< HEAD
 
+=======
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
             ];
         });
     }

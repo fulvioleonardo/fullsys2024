@@ -49,6 +49,10 @@
                         <td class="text-center">
                             <button type="button" class="btn waves-effect waves-light btn-xs btn-primary" @click.prevent="clickDownload(row.id)">Reporte</button>
                             <button type="button" class="btn waves-effect waves-light btn-xs btn-primary" @click.prevent="clickDownload(row.id, 'resumido')">Reporte Resumen</button>
+<<<<<<< HEAD
+=======
+                            <button type="button" class="btn waves-effect waves-light btn-xs btn-primary" @click.prevent="clickDownloadArqueo(row.id)">Arqueo</button>
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
 
                             <template v-if="row.state">
 
@@ -106,6 +110,12 @@
             clickDownload(id, only_head = '') {
                 window.open(`/${this.resource}/report/${id}/${only_head}`, '_blank');
             },
+<<<<<<< HEAD
+=======
+            clickDownloadArqueo(id) {
+                window.open(`/${this.resource}/report-ticket/${id}`, '_blank');
+            },
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
             clickDownloadIncomeSummary(id) {
                 window.open(`/${this.resource}/report/income-summary/${id}`, '_blank');
             },

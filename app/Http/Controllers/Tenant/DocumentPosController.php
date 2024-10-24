@@ -353,9 +353,13 @@ class DocumentPosController extends Controller
                 // \Log::debug("{$base_url}ubl2.1/eqdoc");
                 // \Log::debug($company->api_token);
                 // \Log::debug($data_document);
+<<<<<<< HEAD
                 if(config('tenant.show_log')) {
                     \Log::debug('DocumentPosController:356: '.$response);
                 }
+=======
+                //\Log::debug($response);
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
                 $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 curl_close($ch);
                 $response_model = json_decode($response);
@@ -1137,6 +1141,10 @@ class DocumentPosController extends Controller
         $request_api = json_decode($document->request_api);
         $json = [
             'prefix' => $document_type->prefix,
+<<<<<<< HEAD
+=======
+            'resolution_number' => $document_type->resolution_number,
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
             'number' => $data_consecutive->number,
             'date' => Carbon::now()->format('Y-m-d'),
             'time' => Carbon::now()->format('H:i:s'),
@@ -1612,4 +1620,8 @@ class DocumentPosController extends Controller
         return $customer->id;
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bd1041e (tirilla acomodado factura electronica)
